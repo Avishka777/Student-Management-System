@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const userRoutes = require('./routes/user.route.js');
 const authRoutes = require('./routes/auth.route.js');
 const cookieParser = require('cookie-parser');
 
@@ -20,6 +21,7 @@ app.listen(3000, () => {
   console.log('Server Running On PORT 3000!');
 });
 
+app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 
 app.use((err, req, res, next) => {
