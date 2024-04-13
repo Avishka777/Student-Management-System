@@ -1,79 +1,81 @@
+//Added MUI
+
 import React from 'react';
-import { BsInstagram, BsLinkedin, BsDribbble } from 'react-icons/bs';
-import { FaFacebookSquare } from "react-icons/fa";
+import { Footer } from 'flowbite-react';
+import { BsInstagram, BsLinkedin , BsDribbble } from 'react-icons/bs';
+import { FaSquareFacebook } from "react-icons/fa6";
 import logo from '../assets/logo.png';
-import { IconButton, Grid, Typography, Link, Divider } from '@mui/material';
+import { IconButton } from '@mui/material';
 
-export default function Footer() {
+export default function FooterCom() {
   return (
-    <Grid container style={{ backgroundColor: '#2074d4', padding: '20px 0' }}>
-      <Grid item xs={12} container justifyContent="space-between" alignItems="center">
-        {/* Logo And University Name */}
-        <Grid item>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <img src={logo} alt="PHOENIX Logo" style={{ width: '140px', marginRight: '10px',marginLeft: '30px' }} />
-            <Typography variant="h3" style={{ fontWeight: '700', color: '#ffffff' }}>PHOENIX INSTITUTE</Typography>
+    <Footer container style={{ backgroundColor: '#2074d4' }}>
+      <div style={{ width: '100%' }}>
+        <div style={{ display: 'flex' }}>
+          
+          {/* Logo And University Name */}
+          <div style={{ marginLeft: '40px' }}>
+            <img src={logo} alt="PHOENIX Logo" style={{ marginLeft: 'auto', marginRight: 'auto', width:"140px" }} />
+            <span style={{fontSize: '1.5rem', fontWeight: '600', color: '#ffffff' }}>PHOENIX INSTITUTE</span>
           </div>
-        </Grid>
 
-        {/* Links Section */}
-        <Grid item>
-          <Grid container spacing={8}>
-            <Grid item xs={12} sm={4}>
-              <Typography variant="h6" style={{ color: '#ffffff' }}>Reference</Typography>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <Link href='#' style={{ color: '#ffffff' }}>Computing</Link>
-                <Link href='#' style={{ color: '#ffffff' }}>Engineering</Link>
-                <Link href='#' style={{ color: '#ffffff' }}>Business</Link>
-              </div>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Typography variant="h6" style={{ color: '#ffffff' }}>Services</Typography>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <Link href='#' style={{ color: '#ffffff' }}>Help Desk</Link>
-                <Link href='#' style={{ color: '#ffffff' }}>Student Service</Link>
-                <Link href='#' style={{ color: '#ffffff' }}>Vehicle Service</Link>
-              </div>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Typography variant="h6" style={{ color: '#ffffff' }}>Legal</Typography>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <Link href='#' style={{ color: '#ffffff' }}>Privacy Policy</Link>
-                <Link href='#' style={{ color: '#ffffff' }}>Terms &amp; Conditions</Link>
-              </div>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-
-      {/* Divider */}
-      <Grid item xs={12} style={{ marginTop: '20px' }}>
-        <Divider style={{ borderTop: '1px solid #E5E7EB' }} />
-      </Grid>
-
-      {/* Copyright and Icons */}
-      <Grid item xs={12} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px', padding: '0 20px' }}>
-        {/* Copyright */}
-        <Typography variant="body2" style={{ color: '#ffffff' }}>
-          Copyright Avishka Rathnakumara. All Rights Reserved.
-        </Typography>
-
-        {/* Social Icons */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <IconButton href="https://www.facebook.com/profile.php?id=100085722827700" target='_blank'>
-            <FaFacebookSquare style={{ color: '#ffffff' }} />
-          </IconButton>
-          <IconButton href="https://www.instagram.com/avishka__rathnakumara__/" target='_blank'>
-            <BsInstagram style={{ color: '#ffffff' }} />
-          </IconButton>
-          <IconButton href="https://www.linkedin.com/in/avishka-rathna/" target='_blank'>
-            <BsLinkedin style={{ color: '#ffffff' }} />
-          </IconButton>
-          <IconButton href="https://avishka-rathnakumara.netlify.app/" target='_blank'>
-            <BsDribbble style={{ color: '#ffffff' }} />
-          </IconButton>
+          {/* Links Section */}
+          <div style={{ display: 'flex',  gap: '40px', marginLeft: 'auto', marginTop:'30px' }}>
+            <div>
+              <Footer.Title title='Reference' style={{ color: '#ffffff' }}/>
+              <Footer.LinkGroup col style={{ color: '#ffffff' }}>
+                <Footer.Link href='#'>Computing</Footer.Link>
+                <Footer.Link href='#'>Engineering</Footer.Link>
+                <Footer.Link href='#'>Business</Footer.Link>
+              </Footer.LinkGroup>
+            </div>
+            <div>
+              <Footer.Title title='Services' style={{ color: '#ffffff' }}/>
+              <Footer.LinkGroup col style={{ color: '#ffffff' }}>
+                <Footer.Link href='#'>Help Desk</Footer.Link>
+                <Footer.Link href='#'>Student Service</Footer.Link>
+                <Footer.Link href='#'>Vehicle Service</Footer.Link>
+              </Footer.LinkGroup>
+            </div>
+            <div>
+              <Footer.Title title='Legal' style={{ color: '#ffffff' }}/>
+              <Footer.LinkGroup col style={{ color: '#ffffff' }}>
+                <Footer.Link href='#'>Privacy Policy</Footer.Link>
+                <Footer.Link href='#'>Terms &amp; Conditions</Footer.Link>
+              </Footer.LinkGroup>
+            </div>
+          </div>
         </div>
-      </Grid>
-    </Grid>
+
+        {/* Divider */}
+        <hr style={{ borderTop: '1px solid #E5E7EB', width: '100%', marginTop: '20px' }} />
+
+        {/* Copyright and Icons */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginLeft: '40px', marginTop: '20px' }}>
+          {/* Copyright */}
+          <Footer.Copyright
+            by="Copyright Avishka Rathnakumara. All Rights Reserved."
+            year={new Date().getFullYear()}
+            style={{ color: '#ffffff' }}
+          />
+
+          {/* Social Icons */}
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <IconButton href="https://www.facebook.com/profile.php?id=100085722827700" target='_blank'>
+              <FaSquareFacebook />
+            </IconButton>
+            <IconButton href="https://www.instagram.com/avishka__rathnakumara__/" target='_blank'>
+              <BsInstagram />
+            </IconButton>
+            <IconButton href="https://www.linkedin.com/in/avishka-rathna/" target='_blank'>
+              <BsLinkedin  />
+            </IconButton>
+            <IconButton href="https://avishka-rathnakumara.netlify.app/" target='_blank'>
+              <BsDribbble />
+            </IconButton>
+          </div>
+        </div>
+      </div>
+    </Footer>
   );
 }

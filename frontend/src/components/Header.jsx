@@ -2,7 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { FaMoon, FaSun } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
+import { toggleTheme } from '../redux/theme/themeSlice';
 import { signoutSuccess } from '../redux/user/userSlice';
 import AppBar from '@mui/material/AppBar';
 import logo from '../assets/logo.png';
@@ -98,17 +101,20 @@ export default function Header() {
                 onClose={() => setAnchorEl(null)}
               >
                 <MenuItem>
-                  <Typography variant="body2">@{currentUser.userName}</Typography>
+                  <Typography variant="body2">@{currentUser.username}</Typography>
                 </MenuItem>
                 <MenuItem>
                   <Typography variant="body2">{currentUser.email}</Typography>
+                </MenuItem>
+                <MenuItem>
+                  <RouterLink to='/dashboard?tab=profile'>Dashboard</RouterLink>
                 </MenuItem>
                 <MenuItem onClick={handleSignout}>Sign out</MenuItem>
               </Menu>
             </div>
           ) : (
-            <RouterLink to='/sign-in' style={{ textDecoration: 'none' }}>
-              <Button variant="outlined">Sign In</Button>
+            <RouterLink to='/sign-in'>
+              <Button style={{ color: 'black', border: '1px solid black' }}>Sign In</Button>
             </RouterLink>
           )}
         </div>

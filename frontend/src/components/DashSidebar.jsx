@@ -1,13 +1,19 @@
-import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { HiUser, HiLogout, HiOutlineUserGroup, HiChartBar, HiOutlineAcademicCap } from 'react-icons/hi';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { signoutSuccess } from '../redux/user/userSlice';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import { styled } from '@mui/system';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import { HiUser, HiLogout, HiOutlineUserGroup, HiChartBar, HiOutlineAcademicCap } from 'react-icons/hi';
 
-const drawerWidth = 240;
+const SidebarWrapper = styled('div')({
+  width: '100%',
+  '@media (min-width: 768px)': {
+    width: '240px',
+  },
+});
 
 export default function DashSidebar() {
   const location = useLocation();
@@ -15,7 +21,6 @@ export default function DashSidebar() {
   const { currentUser } = useSelector((state) => state.user);
   const [tab, setTab] = useState('');
 
-  // Update Active Tab Based On URL Change
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const tabFromUrl = urlParams.get('tab');
@@ -24,7 +29,6 @@ export default function DashSidebar() {
     }
   }, [location.search]);
 
-  // Function To Handle User Signout
   const handleSignout = async () => {
     try {
       const res = await fetch('/api/user/signout', {
@@ -42,74 +46,47 @@ export default function DashSidebar() {
   };
 
   return (
-    <Drawer
-      variant="permanent"
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
-          width: drawerWidth,
-          background:"#2074d4"
-        },
-      }}
-    >
-      <PerfectScrollbar>
-        <List style={{ marginTop:'60px' }}>
-          {/* Profile Link */}
-          <Link to='/dashboard?tab=profile' style={{ textDecoration: 'none', color: 'inherit' }}>
-            <ListItem button selected={tab === 'profile'}>
-              <ListItemIcon sx={{ fontSize: 25 }}>
-                <HiUser />
-              </ListItemIcon>
-              <ListItemText primary={currentUser.isAdmin ? 'Admin' : 'User'} />
-            </ListItem>
-          </Link>
+    <SidebarWrapper>
+      <ListItem button component={Link} to='/dashboard?tab=profile' selected={tab === 'profile'}>
+        <ListItemIcon sx={{ fontSize: 24 }}>
+          <HiUser />
+        </ListItemIcon>
+        <ListItemText primary={currentUser.isAdmin ? 'Admin' : 'User'}>Profile</ListItemText>
+      </ListItem>
 
-          {/* Dashboard Link */}
-          {currentUser && currentUser.isAdmin && (
-            <Link to='/dashboard?tab=dash' style={{ textDecoration: 'none', color: 'inherit' }}>
-              <ListItem button selected={tab === 'dash' || !tab}>
-                <ListItemIcon sx={{ fontSize: 25 }}>
-                  <HiChartBar />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-              </ListItem>
-            </Link>
-          )}
+      {currentUser && currentUser.isAdmin && (
+        <ListItem button component={Link} to='/dashboard?tab=dash' selected={tab === 'dash' || !tab}>
+          <ListItemIcon sx={{ fontSize: 24 }}>
+            <HiChartBar />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+        </ListItem>
+      )}
 
-          {/* Users Link */}
-          {currentUser.isAdmin && (
-            <Link to='/dashboard?tab=users' style={{ textDecoration: 'none', color: 'inherit' }}>
-              <ListItem button selected={tab === 'users'}>
-                <ListItemIcon sx={{ fontSize: 25 }}>
-                  <HiOutlineUserGroup />
-                </ListItemIcon>
-                <ListItemText primary="Users" />
-              </ListItem>
-            </Link>
-          )}
+      {currentUser.isAdmin && (
+        <ListItem button component={Link} to='/dashboard?tab=users' selected={tab === 'users'}>
+          <ListItemIcon sx={{ fontSize: 24 }}>
+            <HiOutlineUserGroup />
+          </ListItemIcon>
+          <ListItemText primary="Users" />
+        </ListItem>
+      )}
 
-          {/* Courses Link */}
-          {currentUser.isAdmin && (
-            <Link to='/dashboard?tab=courses' style={{ textDecoration: 'none', color: 'inherit' }}>
-              <ListItem button selected={tab === 'courses'}>
-                <ListItemIcon sx={{ fontSize: 25 }}>
-                  <HiOutlineAcademicCap />
-                </ListItemIcon>
-                <ListItemText primary="Courses" />
-              </ListItem>
-            </Link>
-          )}
+      {currentUser.isAdmin && (
+        <ListItem button component={Link} to='/dashboard?tab=courses' selected={tab === 'courses'}>
+          <ListItemIcon sx={{ fontSize: 24 }}>
+            <HiOutlineAcademicCap />
+          </ListItemIcon>
+          <ListItemText primary="Courses" />
+        </ListItem>
+      )}
 
-          {/* Sign Out Button */}
-          <ListItem button onClick={handleSignout}>
-            <ListItemIcon sx={{ fontSize: 25 }}>
-              <HiLogout />
-            </ListItemIcon>
-            <ListItemText primary="Sign Out" />
-          </ListItem>
-        </List>
-      </PerfectScrollbar>
-    </Drawer>
+      <ListItem button onClick={handleSignout}>
+        <ListItemIcon sx={{ fontSize: 24 }}>
+          <HiLogout />
+        </ListItemIcon>
+        <ListItemText primary="Sign Out" />
+      </ListItem>
+    </SidebarWrapper>
   );
 }
