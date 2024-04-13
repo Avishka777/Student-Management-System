@@ -41,8 +41,7 @@ exports.getcourses = async (req, res, next) => {
       ...(req.query.courseId && { _id: req.query.courseId }),
       ...(req.query.searchTerm && {
         $or: [
-          { courseFaculty: { $regex: req.query.searchTerm, $options: 'i' } },
-          { courseCredit: { $regex: req.query.searchTerm, $options: 'i' } },
+          { coursePrice: { $regex: req.query.searchTerm, $options: 'i' } },
         ],
       }),
     })
@@ -98,8 +97,8 @@ exports.updatecourse = async (req, res, next) => {
           courseName: req.body.courseName,
           courseCode: req.body.courseCode,
           courseDescription: req.body.courseDescription,
-          courseCredit: req.body.courseCredit,
-          enrolledfaculty: req.body.enrolledfaculty,
+          coursePrice: req.body.coursePrice,
+          enrolledTeacher: req.body.enrolledTeacher,
         },
       },
       { new: true }
