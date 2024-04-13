@@ -16,17 +16,17 @@ const courseSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
-    courseCredit: {
+    coursePrice: {
       type: String,
     },
     enrolledStudents: [{ 
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'User' 
     }],
-    enrolledfaculty: [{ 
+    enrolledTeacher:{ 
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'User' 
-    }],
+    },
     slug: {
       type: String,
       required: true,
