@@ -7,7 +7,7 @@ export default function About() {
   return (
     <Box sx={{ maxWidth: '1200px', margin: 'auto', marginBottom: '40px'  }}>
       {/* Top Section */}
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '40px', }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '40px', marginBottom: '40px',  }}>
       <Box sx={{ display: 'flex', flexDirection: 'row', margin: 'auto' }}>
           <img src={logo} alt="Stark Logo" style={{ height: '100px', width: '100px', borderRadius: '8px'}} />
           <Typography variant="h2" sx={{ color: '#2D3B48', textTransform: 'uppercase', margin: 'auto', fontFamily: 'serif' }}>The Future...</Typography>
