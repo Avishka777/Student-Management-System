@@ -1,5 +1,3 @@
-//Added MUI
-
 import { useEffect, useState } from 'react';
 import logo from '../assets/logo.png';
 import CourseCard from '../components/CourseCard';

@@ -1,5 +1,3 @@
-//Added MUI
-
 import React from 'react';
 import { Footer } from 'flowbite-react';
 import { BsInstagram, BsLinkedin , BsDribbble } from 'react-icons/bs';
