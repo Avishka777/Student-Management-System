@@ -90,8 +90,8 @@ export default function CreateCourses() {
           />
         </div>
         <div className='mt-2'>
-          <FormControl className='flex-1 mt-2'>
-            <InputLabel id='enrolledTeacherLabel'>Assign Faculty</InputLabel>
+          <FormControl className='flex-1 mt-2 w-full'>
+            <label>Assigned Teacher</label>
             <Select
               labelId='enrolledFacultyLabel'
               value={formData.enrolledTeacher}

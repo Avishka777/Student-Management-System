@@ -36,22 +36,21 @@ export default function Home() {
       </Box>
       
       {/* Recent Courses Section */}
-      <div sx={{ maxWidth: '6xl', margin: 'auto', paddingBottom: '3rem', display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', paddingLeft: '20px', paddingRight: '20px', maxWidth: '1200px', margin: 'auto' }}>
         {/* Render Recent Courses If Available */}
         {courses && courses.length > 0 && (
-          <div sx={{ marginBottom: '1.5rem' }}>
-            <hr sx={{ borderColor: 'rgba(219,234,254,var(--tw-border-opacity))' }} />
-            <h1 variant="h2" sx={{ fontSize: '1.25rem', textTransform: 'uppercase', color: '#1E3A8A', fontWeight: 'bold', padding: '1rem 0' }}>Available Courses</h1>
-            <hr sx={{ borderColor: 'rgba(219,234,254,var(--tw-border-opacity))' }}/>
-            <div sx={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '1rem' }}>
+         <Box style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginLeft: 'auto', marginRight: 'auto' ,  marginTop: '2rem'}}>
+            <h1 style={{ fontSize: '1.8rem', textTransform: 'uppercase', color: '#CB136D', fontWeight: 'bold'}}>Available Courses...</h1>
+            <hr style={{ color: 'gray' }}/>
+            <div>
               {/* Map Through Courses And Render CourseCard For Each */}
               {courses.map((course) => (
                 <CourseCard key={course._id} course={course} />
               ))}
             </div>
-          </div>
+          </Box>
         )}
-      </div>
+      </Box>
       
     </div>
   );
