@@ -1,18 +1,48 @@
-import React, { useState } from 'react';
-import { TextField, Button, Select, MenuItem, FormControl, InputLabel, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Button, FormControl, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Alert } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-export default function CreateCourses() {
+export default function UpdateCourse() {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
+  const { courseId } = useParams();
   const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const fetchCourse = async () => {
+      try {
+        const res = await fetch(`/api/course/getcourses?courseId=${courseId}`);
+        const data = await res.json();
+        if (!res.ok) {
+          console.log(data.message);
+          setPublishError(data.message);
+          return;
+        }
+        if (res.ok) {
+          setPublishError(null);
+          // Set formData including enrolledTeacher
+          setFormData({
+            ...data.courses[0],
+            enrolledTeacher: data.courses[0].enrolledTeacher
+          });
+        }
+      } catch (error) {
+        console.log(error.message);
+        setPublishError('Something went wrong');
+      }
+    };
+
+    fetchCourse();
+  }, [courseId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/course/create', {
-        method: 'POST',
+      const res = await fetch(`/api/course/updatecourse/${formData._id}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -29,19 +59,19 @@ export default function CreateCourses() {
         navigate(`/dashboard?tab=courses`);
       }
     } catch (error) {
-      setPublishError('Something Went Wrong');
+      setPublishError('Something went wrong');
     }
   };
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
-  };  
+  };
 
   return (
     <div className='p-3 max-w-3xl mx-auto min-h-screen mt-10'>
       <div>
-        <Typography variant="h4" align="center" color="primary"> - CREATE COURSE - </Typography>
+        <Typography variant="h4" align="center" color="primary">- UPDATE COURSE -</Typography>
         <hr className="my-4 border-gray-300 dark:border-gray-600" />
       </div>
       <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
@@ -54,6 +84,7 @@ export default function CreateCourses() {
             id='courseName'
             className='flex-1 mt-2 w-full'
             onChange={handleChange}
+            value={formData.courseName || ''}
           />
         </div>
         <div className='mt-2'>
@@ -65,6 +96,7 @@ export default function CreateCourses() {
             id='courseCode'
             className='flex-1 mt-2 w-full'
             onChange={handleChange}
+            value={formData.courseCode || ''}
           />
         </div>
         <div className='mt-2'>
@@ -76,6 +108,7 @@ export default function CreateCourses() {
             id='courseDescription'
             className='flex-1 mt-2 w-full'
             onChange={handleChange}
+            value={formData.courseDescription || ''}
           />
         </div>
         <div className='mt-2'>
@@ -87,17 +120,16 @@ export default function CreateCourses() {
             id='coursePrice'
             className='flex-1 mt-2 w-full'
             onChange={handleChange}
+            value={formData.coursePrice || ''}
           />
         </div>
         <div className='mt-2'>
           <FormControl className='flex-1 mt-2 w-full'>
             <label>Assigned Teacher</label>
             <Select
-              labelId='enrolledFacultyLabel'
-              value={formData.enrolledTeacher}
-              onChange={(e) =>
-                setFormData({ ...formData, enrolledTeacher: e.target.value })
-              }
+              labelId='enrolledTeacherLabel'
+              value={formData.enrolledTeacher || ''}
+              onChange={(e) => handleChange({ target: { id: 'enrolledTeacher', value: e.target.value } })}
             >
               <MenuItem value=''>Select Lecturer</MenuItem>
               <MenuItem value='65faafe26a08c9c2d231e3d6'>Mr. Pasan Fernando</MenuItem>
@@ -109,7 +141,7 @@ export default function CreateCourses() {
           </FormControl>
         </div>
         <Button type='submit' variant='contained' color='primary' className='mt-2'>
-          Create Course
+          Update Course
         </Button>
         {publishError && (
           <Alert className='mt-5' severity='error'>
