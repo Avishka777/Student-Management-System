@@ -1,46 +1,45 @@
 import React from 'react';
-import { Footer } from 'flowbite-react';
-import { BsInstagram, BsLinkedin , BsDribbble } from 'react-icons/bs';
-import { FaSquareFacebook } from "react-icons/fa6";
-import logo from '../assets/logo.png';
 import { IconButton } from '@mui/material';
+import { BsInstagram, BsLinkedin, BsDribbble } from 'react-icons/bs';
+import { FaFacebookSquare } from 'react-icons/fa';
+import logo from '../assets/logo.png';
 
 export default function FooterCom() {
   return (
-    <Footer container style={{ backgroundColor: '#2074d4' }}>
+    <footer style={{ backgroundColor: '#2074d4', padding: '20px' }}>
       <div style={{ width: '100%' }}>
         <div style={{ display: 'flex' }}>
           
           {/* Logo And University Name */}
-          <div style={{ marginLeft: '40px' }}>
-            <img src={logo} alt="PHOENIX Logo" style={{ marginLeft: 'auto', marginRight: 'auto', width:"140px" }} />
-            <span style={{fontSize: '1.5rem', fontWeight: '600', color: '#ffffff' }}>PHOENIX INSTITUTE</span>
+          <div style={{ marginLeft: '40px', display: 'flex', flexDirection: 'column' }}>
+            <img src={logo} alt="PHOENIX Logo" style={{ width: '140px' }} />
+            <span style={{ fontSize: '1.5rem', fontWeight: '600', color: '#ffffff' }}>PHOENIX INSTITUTE</span>
           </div>
 
           {/* Links Section */}
-          <div style={{ display: 'flex',  gap: '40px', marginLeft: 'auto', marginTop:'30px' }}>
+          <div style={{ display: 'flex', gap: '40px', marginLeft: 'auto', marginTop:'30px' }}>
             <div>
-              <Footer.Title title='Reference' style={{ color: '#ffffff' }}/>
-              <Footer.LinkGroup col style={{ color: '#ffffff' }}>
-                <Footer.Link href='#'>Computing</Footer.Link>
-                <Footer.Link href='#'>Engineering</Footer.Link>
-                <Footer.Link href='#'>Business</Footer.Link>
-              </Footer.LinkGroup>
+              <h4 style={{ color: '#ffffff' }}>Reference</h4>
+              <ul style={{ listStyleType: 'none', padding: 0 }}>
+                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Computing</a></li>
+                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Engineering</a></li>
+                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Business</a></li>
+              </ul>
             </div>
             <div>
-              <Footer.Title title='Services' style={{ color: '#ffffff' }}/>
-              <Footer.LinkGroup col style={{ color: '#ffffff' }}>
-                <Footer.Link href='#'>Help Desk</Footer.Link>
-                <Footer.Link href='#'>Student Service</Footer.Link>
-                <Footer.Link href='#'>Vehicle Service</Footer.Link>
-              </Footer.LinkGroup>
+              <h4 style={{ color: '#ffffff' }}>Services</h4>
+              <ul style={{ listStyleType: 'none', padding: 0 }}>
+                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Help Desk</a></li>
+                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Student Service</a></li>
+                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Vehicle Service</a></li>
+              </ul>
             </div>
             <div>
-              <Footer.Title title='Legal' style={{ color: '#ffffff' }}/>
-              <Footer.LinkGroup col style={{ color: '#ffffff' }}>
-                <Footer.Link href='#'>Privacy Policy</Footer.Link>
-                <Footer.Link href='#'>Terms &amp; Conditions</Footer.Link>
-              </Footer.LinkGroup>
+              <h4 style={{ color: '#ffffff' }}>Legal</h4>
+              <ul style={{ listStyleType: 'none', padding: 0 }}>
+                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Privacy Policy</a></li>
+                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Terms & Conditions</a></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -51,29 +50,25 @@ export default function FooterCom() {
         {/* Copyright and Icons */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginLeft: '40px', marginTop: '20px' }}>
           {/* Copyright */}
-          <Footer.Copyright
-            by="Copyright Avishka Rathnakumara. All Rights Reserved."
-            year={new Date().getFullYear()}
-            style={{ color: '#ffffff' }}
-          />
+          <p style={{ color: '#ffffff', margin: 0 }}>Copyright Avishka Rathnakumara. All Rights Reserved. &copy; {new Date().getFullYear()}</p>
 
           {/* Social Icons */}
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div>
             <IconButton href="https://www.facebook.com/profile.php?id=100085722827700" target='_blank'>
-              <FaSquareFacebook />
+              <FaFacebookSquare style={{ color: '#ffffff' }} />
             </IconButton>
             <IconButton href="https://www.instagram.com/avishka__rathnakumara__/" target='_blank'>
-              <BsInstagram />
+              <BsInstagram style={{ color: '#ffffff' }} />
             </IconButton>
             <IconButton href="https://www.linkedin.com/in/avishka-rathna/" target='_blank'>
-              <BsLinkedin  />
+              <BsLinkedin style={{ color: '#ffffff' }} />
             </IconButton>
             <IconButton href="https://avishka-rathnakumara.netlify.app/" target='_blank'>
-              <BsDribbble />
+              <BsDribbble style={{ color: '#ffffff' }} />
             </IconButton>
           </div>
         </div>
       </div>
-    </Footer>
+    </footer>
   );
 }
