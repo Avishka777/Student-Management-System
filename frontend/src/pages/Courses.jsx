@@ -3,13 +3,13 @@ import logo from '../assets/logo.png';
 import CourseCard from '../components/CourseCard';
 import { Typography, Box, Divider } from '@mui/material'; 
 
-export default function Home() {
+export default function Courses() {
   const [courses, setCourses] = useState([]); // State Variable For Storing Courses
 
   // Fetch Courses When Component Mounts
   useEffect(() => {
     const fetchCourses = async () => {
-      const res = await fetch('/api/course/getcourses?limit=4');
+      const res = await fetch('/api/course/getCourses');
       const data = await res.json();
       setCourses(data.courses);
     };
@@ -22,16 +22,18 @@ export default function Home() {
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '40px', marginBottom: '40px', paddingLeft: '20px', paddingRight: '20px', maxWidth: '1200px', margin: 'auto' }}>
         <Box sx={{ display: 'flex', flexDirection: 'row', margin: 'auto' }}>
           <img src={logo} alt="Stark Logo" style={{ height: '100px', width: '100px', borderRadius: '8px'}} />
-          <Typography variant="h2" sx={{ color: '#2D3B48', textTransform: 'uppercase', margin: 'auto', fontFamily: 'serif' }}>The Future...</Typography>
+          <Typography variant="h2" sx={{ color: '#2D3B48', textTransform: 'uppercase', margin: 'auto', fontFamily: 'serif' }}>OUR COURSES...</Typography>
         </Box>
         <Divider />
         <Typography variant="body1" sx={{ color: '#6B7280' }}>
-          Welcome to Phoenix Institute, a leading institution dedicated to fostering excellence in education and innovation. At Phoenix, we believe in empowering students with 
-          knowledge and skills that prepare them for the challenges of the modern world. With a dynamic curriculum designed to meet the evolving needs of industries and society, 
-          we offer a diverse range of programs across various disciplines, including technology, business, arts, and sciences. Our experienced faculty members are committed to 
-          providing personalized guidance and support to help students realize their full potential. Through state-of-the-art facilities and interactive learning experiences, 
-          we strive to create a vibrant learning community where creativity thrives and ideas flourish. Join us at Phoenix Institute and embark on a journey of discovery, growth, 
-          and success.
+        We are a leading non-state degree awarding institute approved by the University Grants Commission (UGC) under the Universities Act. We are also members of the 
+        Association of Commonwealth Universities (ACU), as well as the International Association of Universities (IAU), and the first Sri Lankan institute to be 
+        accredited by the Institution of Engineering & Technology, UK.
+        </Typography>
+        <Typography variant="body1" sx={{ color: '#6B7280' }}>
+        We are proud to be listed as a leading and formidable awarding institute authorised and approved by the University Grants Commission (UGC) under the Universities 
+        Act, and the International Association of Universities (IAU). Furthermore, not only we are the first Sri Lankan institute to be accredited by the Institute of 
+        Engineering & Technology(IET.), UK, our IT degrees are also in turn accredited by the Engineering Council, UK.
         </Typography>
       </Box>
       
@@ -40,7 +42,7 @@ export default function Home() {
         {/* Render Recent Courses If Available */}
         {courses && courses.length > 0 && (
          <Box style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginLeft: 'auto', marginRight: 'auto' ,  marginTop: '2rem'}}>
-            <h1 style={{ fontSize: '1.8rem', textTransform: 'uppercase', color: '#CB136D', fontWeight: 'bold'}}>New Courses...</h1>
+            <h1 style={{ fontSize: '1.8rem', textTransform: 'uppercase', color: '#CB136D', fontWeight: 'bold'}}>ALL Courses...</h1>
             <hr style={{ color: 'gray' }}/>
             <div>
               {/* Map Through Courses And Render CourseCard For Each */}
