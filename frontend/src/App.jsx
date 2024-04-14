@@ -9,7 +9,7 @@ import Courses from "./pages/Courses"
 import Footer from "./components/Footer"
 import PrivateRoute from './components/PrivateRoute';
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
-import CreateCourse from './pages/CreateCourse';
+import CreateCourses from './pages/CreateCourses';
 import Search from './pages/Search';
 import UpdateCourse from "./pages/UpdateCourse"
 import CoursePage from "./pages/CoursePage"
@@ -29,7 +29,7 @@ export default function App() {
         </Route>
 
         <Route element={<OnlyAdminPrivateRoute />}>
-          <Route path='/create-course' element={<CreateCourse />} />
+          <Route path='/create-course' element={<CreateCourses />} />
           <Route path='/update-course/:courseId' element={<UpdateCourse />} />
         </Route>
         

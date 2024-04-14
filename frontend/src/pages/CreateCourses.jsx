@@ -34,8 +34,9 @@ export default function CreateCourses() {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-  };
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+  };  
 
   return (
     <div className='p-3 max-w-3xl mx-auto min-h-screen mt-10'>
@@ -89,16 +90,16 @@ export default function CreateCourses() {
           />
         </div>
         <div className='mt-2'>
-          <label>Assign Teacher</label>
-          <FormControl className='flex-1 mt-2 w-full'>
+          <FormControl className='flex-1 mt-2'>
+            <InputLabel id='enrolledTeacherLabel'>Assign Faculty</InputLabel>
             <Select
+              labelId='enrolledFacultyLabel'
               value={formData.enrolledTeacher}
-              onChange={handleChange}
-              id='enrolledTeacher'
+              onChange={(e) =>
+                setFormData({ ...formData, enrolledTeacher: e.target.value })
+              }
             >
-              <MenuItem value=''>
-                <em>Select Lecturer</em>
-              </MenuItem>
+              <MenuItem value=''>Select Lecturer</MenuItem>
               <MenuItem value='65faafe26a08c9c2d231e3d6'>Mr. Pasan Fernando</MenuItem>
               <MenuItem value='65faaffa6a08c9c2d231e3d8'>Mr. Dananjaya Abesinghe</MenuItem>
               <MenuItem value='65fa98425e8a62d5e954e25f'>Mr. Avishka Rathnakumara</MenuItem>
