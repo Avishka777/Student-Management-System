@@ -8,29 +8,18 @@ export default function CourseCard({ course }) {
     : course.courseDescription;
 
   return (
-    <Box 
-      border="1px solid #Cb136d"
-      borderRadius="8px"
-      overflow="hidden"
-      className='hover:border-2 transition-all h-[110px] w-[auto] flex flex-row mb-4'
-    >      
+    <Box  border="2px solid #Cb136d" borderRadius="8px" marginY={2} paddingX={2} paddingY={1}>      
       {/* Course Details */}
-      <Box className='gap-2 ml-3 mr-3 mt-2'>
-        <Link to={`/course/${course.slug}`}>
-          <Box className='flex flex-col'>
+      <Box>
+        <Link to={`/course/${course.slug}`} style={{ textDecoration: 'none' }}>
+          <Box >
             {/* Course Code and Name */}
-            <div className='flex flex-row'>
+            <div>
               <Typography variant="subtitle1" fontWeight="bold" color="#Cb136d" fontSize={16}>
-                {(course.courseCode)}
-              </Typography>
-              <Typography variant="subtitle1" color="black" ml={1} mr={1} fontSize={16}>
-                |
-              </Typography>
-              <Typography variant="subtitle1" fontWeight="bold" color="#2074d4" fontSize={16}>
-                {(course.courseName)}
+                {(course.courseCode)} | {(course.courseName)}
               </Typography>
             </div>
-            <hr />
+            <hr style={{color:'#2074d4'}}/>
             <div className='flex'>
               <Typography variant="subtitle1" color="#8c8e8f">
                 {truncatedDescription}
