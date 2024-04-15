@@ -73,37 +73,33 @@ export default function DashCourses() {
   };
 
   return (
-    <div className='w-full px-5 scrollbar'>
+    <div style={{ maxWidth: '100%', padding: '2rem' }}>
       {currentUser.isAdmin && userCourses.length > 0 ? (
         <>
-          <Table hover className='shadow-md'>
+          <Table>
             <TableHead>
-              <TableCell>DATE ADDED</TableCell>
-              <TableCell>COURSE ID</TableCell>
-              <TableCell>COURSE NAME</TableCell>
-              <TableCell>PRICE</TableCell>
-              <TableCell>ASSIGNED TEACHER</TableCell>
-              <TableCell>DELETE</TableCell>
-              <TableCell>EDIT</TableCell>
+              <TableCell style={{fontWeight:'600'}}>COURSE ID</TableCell>
+              <TableCell style={{fontWeight:'600'}}>COURSE NAME</TableCell>
+              <TableCell style={{fontWeight:'600'}}>PRICE</TableCell>
+              <TableCell style={{fontWeight:'600'}}>ASSIGNED TEACHER</TableCell>
+              <TableCell style={{fontWeight:'600'}}>DELETE</TableCell>
+              <TableCell style={{fontWeight:'600'}}>EDIT</TableCell>
             </TableHead>
             {userCourses.map((course) => (
               <TableBody>
-                <TableRow className='bg-white dark:border-gray-700 dark:bg-gray-800'>
-                  <TableCell>
-                    {new Date(course.updatedAt).toLocaleDateString()}
-                  </TableCell>
+                <TableRow>
                   <TableCell>
                     <Link
-                      className='font-medium text-gray-900 dark:text-white'
                       to={`/course/${course.slug}`}
+                      style={{textDecoration:'none', color:'black'}}
                     >
                       {course.courseCode}
                     </Link>
                   </TableCell>
                   <TableCell>
                     <Link
-                      className='font-medium text-gray-900 dark:text-white'
                       to={`/course/${course.slug}`}
+                      style={{textDecoration:'none', color:'black'}}
                     >
                       {course.courseName}
                     </Link>
@@ -124,7 +120,6 @@ export default function DashCourses() {
                   </TableCell>
                   <TableCell>
                     <Link
-                      className='text-teal-500 hover:underline'
                       to={`/update-course/${course._id}`}
                     >
                       <Button variant='outlined'>Edit</Button>
@@ -135,7 +130,7 @@ export default function DashCourses() {
             ))}
           </Table>
           {showMore && (
-            <Button onClick={handleShowMore} color='primary' variant='outlined' className='mt-3'>
+            <Button onClick={handleShowMore} color='primary' variant='outlined' >
               Show more
             </Button>
           )}

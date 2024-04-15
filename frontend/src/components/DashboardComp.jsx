@@ -51,7 +51,7 @@ export default function DashboardComp() {
   };
 
   return (
-    <Box px={5} width="100%" >
+    <Box px={5} maxWidth="100%" marginTop={4} >
       {/* Buttons To Createions */}
       <Box display="flex" mb={3} mr={3} gap={2}>
         {currentUser.isAdmin && (
@@ -64,15 +64,21 @@ export default function DashboardComp() {
             <Button variant='contained'>Create Course</Button>
           </Link>
         )}
+        {currentUser.isAdmin && (
+          <Link to={'/'}>
+            <Button variant='contained'>Make Payment</Button>
+          </Link>
+        )}
+
       </Box>
 
       {/* Displaying Total Users And Recent Users and Courses */}
       <Box display="flex" justifyContent="center" mt={3}>
 
         {/* Total Users Component */}
-        <Box flex={1} p={2} bgcolor="#Dfdfe2" borderRadius={4} boxShadow={4}>
+        <Box flex={1} p={2} bgcolor="#d417a1" borderRadius={4} boxShadow={4}>
           <Box display="flex" justifyContent="space-between">
-            <HiOutlineUserGroup fontSize="30px" color="#2074d4" />
+            <HiOutlineUserGroup fontSize="30px" color="#ffffff"/>
             <Typography variant="h4">TOTAL USER COUNT</Typography>
             <Typography variant="h4">{totalUsers}</Typography>
           </Box>
@@ -84,9 +90,9 @@ export default function DashboardComp() {
         </Box>
 
         {/* Total Courses Component */}
-        <Box flex={1} p={2} bgcolor="#Dfdfe2" borderRadius={4} boxShadow={4} ml={3}>
+        <Box flex={1} p={2} bgcolor="#ff450d" borderRadius={4} boxShadow={4} ml={3}>
           <Box display="flex" justifyContent="space-between">
-            <HiOutlineAcademicCap fontSize="30px" color="#2074d4" />
+            <HiOutlineAcademicCap fontSize="30px" color="#ffffff" />
             <Typography variant="h4">TOTAL COURSE COUNT</Typography>
             <Typography variant="h4">{totalCourses}</Typography>
           </Box>
@@ -102,17 +108,17 @@ export default function DashboardComp() {
       <Box display="flex" justifyContent="space-between" py={3}>
 
         {/* Recent Users Component */}
-        <TableContainer component={Box} flex={1} borderRadius={4} boxShadow={4} bgcolor="#A09c9c">
+        <TableContainer component={Box} flex={1} borderRadius={4} boxShadow={4} bgcolor="#d61149">
           <Box p={2} display="flex" justifyContent="space-between" alignItems="center">
             <Typography variant="h6" color="white">RECENT USERS</Typography>
-            <Button variant='outlined' component={Link} to='/dashboard?tab=users' sx={{ bgcolor: '#Cb136d', color: '#fff' }}>See all</Button>
+            <Button variant='outlined' component={Link} to='/dashboard?tab=users' sx={{ bgcolor: '#000000', color: '#fff' }}>See all</Button>
           </Box>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>IMAGE</TableCell>
-                <TableCell>NAME</TableCell>
-                <TableCell>EMAIL</TableCell>
+                <TableCell style={{fontWeight:'600', color:"white"}}>IMAGE</TableCell>
+                <TableCell style={{fontWeight:'600', color:"white"}}>NAME</TableCell>
+                <TableCell style={{fontWeight:'600', color:"white"}}>EMAIL</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -122,8 +128,8 @@ export default function DashboardComp() {
                   <TableCell>
                     <Avatar src={user.profilePicture} />
                   </TableCell>
-                  <TableCell>{user.username}</TableCell>
-                  <TableCell>{user.email}</TableCell>
+                  <TableCell style={{ color:"white"}}>{user.username}</TableCell>
+                  <TableCell style={{ color:"white"}}>{user.email}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -131,26 +137,24 @@ export default function DashboardComp() {
         </TableContainer>
 
         {/* Recent Courses Component */}
-        <TableContainer component={Box} flex={1} borderRadius={4} boxShadow={4} bgcolor="#A09c9c" ml={3}>
+        <TableContainer component={Box} flex={1} borderRadius={4} boxShadow={4} bgcolor="#0f6785" ml={3}>
           <Box p={2} display="flex" justifyContent="space-between" alignItems="center">
-            <Typography variant="h6" color="white">Recent Courses</Typography>
-            <Button variant='outlined' component={Link} to='/dashboard?tab=courses' sx={{ bgcolor: '#Cb136d', color: '#fff' }}>See all</Button>
+            <Typography variant="h6" color="white">RECENT COURSES</Typography>
+            <Button variant='outlined' component={Link} to='/dashboard?tab=courses' sx={{ bgcolor: '#000000', color: '#fff' }}>See all</Button>
           </Box>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>COURSE NAME</TableCell>
-                <TableCell>COURSE CODE</TableCell>
-                <TableCell>COURSE PRICE</TableCell>
+                <TableCell style={{fontWeight:'600',color:"white"}}>COURSE NAME</TableCell>
+                <TableCell style={{fontWeight:'600',color:"white"}}>PRICE</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {/* Displaying List Of Recent Courses */}
               {courses.map((course) => (
                 <TableRow key={course._id}>
-                  <TableCell>{course.courseName}</TableCell>
-                  <TableCell>{course.courseCode}</TableCell>
-                  <TableCell>{course.coursePrice}</TableCell>
+                  <TableCell style={{ color:"white"}}>{course.courseName}</TableCell>
+                  <TableCell style={{ color:"white"}}>{course.coursePrice}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

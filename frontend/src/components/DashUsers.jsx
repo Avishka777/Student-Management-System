@@ -65,20 +65,20 @@ export default function DashUsers() {
   };
 
   return (
-    <div style={{ width: '100%', paddingleft: '2rem' , paddingRight: '2rem' }}>
+    <div style={{ width: '100%', padding: '2rem' }}>
       {currentUser.isAdmin && users.length > 0 ? (
         <>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>DATE CREATED</TableCell>
-                <TableCell>IMAGE</TableCell>
-                <TableCell>NAME</TableCell>
-                <TableCell>EMAIL</TableCell>
-                <TableCell>ADMIN</TableCell>
-                <TableCell>TEACHER</TableCell>
-                <TableCell>STUDENT</TableCell>
-                <TableCell>DELETE</TableCell>
+                <TableCell style={{fontWeight:'600'}}>DATE CREATED</TableCell>
+                <TableCell style={{fontWeight:'600'}}>IMAGE</TableCell>
+                <TableCell style={{fontWeight:'600'}}>NAME</TableCell>
+                <TableCell style={{fontWeight:'600'}}>EMAIL</TableCell>
+                <TableCell style={{fontWeight:'600'}}>ADMIN</TableCell>
+                <TableCell style={{fontWeight:'600'}}>TEACHER</TableCell>
+                <TableCell style={{fontWeight:'600'}}>STUDENT</TableCell>
+                <TableCell style={{fontWeight:'600'}}>DELETE</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

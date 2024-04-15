@@ -54,7 +54,7 @@ export default function DashSidebar() {
   };
 
   return (
-      <SidebarWrapper style={{flexDirection: 'row' , background:'#Cb136d', width:'100%'}}>
+      <SidebarWrapper style={{flexDirection: 'row' , background:'#5d5d5d', width:'100%'}}>
         <ListItemWrapper style={{ color:'#fff'}}>
           <ListItem button component={Link} to='/dashboard?tab=profile' selected={tab === 'profile'} >
             <ListItemIcon sx={{ fontSize: 24 }}>
@@ -65,7 +65,7 @@ export default function DashSidebar() {
         </ListItemWrapper>
 
         {currentUser && currentUser.isAdmin && (
-          <ListItemWrapper style={{marginLeft: '10rem',color:'#fff' }}>
+          <ListItemWrapper style={{color:'#fff' }}>
             <ListItem button component={Link} to='/dashboard?tab=dash' selected={tab === 'dash' || !tab}>
               <ListItemIcon sx={{ fontSize: 24 }}>
                 <HiChartBar style={{ color:'#fff'}} />
@@ -76,7 +76,7 @@ export default function DashSidebar() {
         )}
 
         {currentUser.isAdmin && (
-          <ListItemWrapper style={{marginLeft: '10rem',color:'#fff' }}>
+          <ListItemWrapper style={{color:'#fff' }}>
             <ListItem button component={Link} to='/dashboard?tab=users' selected={tab === 'users'}>
               <ListItemIcon sx={{ fontSize: 24 }}>
                 <HiOutlineUserGroup style={{ color:'#fff'}}/>
@@ -87,7 +87,7 @@ export default function DashSidebar() {
         )}
 
         {currentUser.isAdmin && (
-          <ListItemWrapper style={{marginLeft: '10rem',color:'#fff' }}>
+          <ListItemWrapper style={{color:'#fff' }}>
             <ListItem button component={Link} to='/dashboard?tab=courses' selected={tab === 'courses'}>
               <ListItemIcon sx={{ fontSize: 24 }}>
                 <HiOutlineAcademicCap style={{ color:'#fff'}}/>
@@ -97,7 +97,7 @@ export default function DashSidebar() {
           </ListItemWrapper>
         )}
 
-        <ListItemWrapper style={{marginLeft: '10rem',color:'#fff' }}>
+        <ListItemWrapper style={{color:'#fff' }}>
           <ListItem button onClick={handleSignout}>
             <ListItemIcon sx={{ fontSize: 24 }}>
               <HiLogout style={{ color:'#fff'}}/>

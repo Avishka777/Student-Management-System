@@ -1,30 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
-import { CircularProgress } from '@mui/material';
-import { Alert } from '@mui/material';
-import { Button } from '@mui/material';
-import { TextField } from '@mui/material';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import { updateStart, updateSuccess, updateFailure, signoutSuccess } from '../redux/user/userSlice';
+import { useDispatch } from 'react-redux';
+import { Button, TextField, Typography } from '@mui/material';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
-
 export default function DashProfile() {
-  const { currentUser, error, loading } = useSelector((state) => state.user); // Getting CurrentUser, Error, And Loading State From Redux Store
-  const [imageFile, setImageFile] = useState(null); // State Variable For Storing Image File
-  const [imageFileUrl, setImageFileUrl] = useState(null); // State Variable For Storing Image File URL
-  const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null); // State Variable For Storing Image File Upload Progress
-  const [imageFileUploadError, setImageFileUploadError] = useState(null); // State Variable For Storing Image File Upload Error
-  const [imageFileUploading, setImageFileUploading] = useState(false); // State Variable For Indicating Whether Image File Is Uploading
-  const [updateUserSuccess, setUpdateUserSuccess] = useState(null); // State Variable For Indicating Update User Success
-  const [updateUserError, setUpdateUserError] = useState(null); // State Variable For Indicating Update User Error
-  const [showModal, setShowModal] = useState(false); // State Variable For Indicating Whether Modal Is Visible
-  const [formData, setFormData] = useState({}); // State Variable For Form Data
-  const filePickerRef = useRef(); // Reference For File Input Element
-  const dispatch = useDispatch(); // useDispatch Hook For Dispatching Redux Actions
-  
-  // Function To Handle Image Change
+  const { currentUser, error, loading } = useSelector((state) => state.user);
+  const [imageFile, setImageFile] = useState(null);
+  const [imageFileUrl, setImageFileUrl] = useState(null);
+  const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
+  const [imageFileUploadError, setImageFileUploadError] = useState(null);
+  const [imageFileUploading, setImageFileUploading] = useState(false);
+  const [updateUserSuccess, setUpdateUserSuccess] = useState(null);
+  const [updateUserError, setUpdateUserError] = useState(null);
+  const [formData, setFormData] = useState({});
+  const filePickerRef = useRef();
+  const dispatch = useDispatch();
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -32,24 +30,14 @@ export default function DashProfile() {
       setImageFileUrl(URL.createObjectURL(file));
     }
   };
+
   useEffect(() => {
     if (imageFile) {
       uploadImage();
     }
   }, [imageFile]);
 
-  // Function To Upload Image
   const uploadImage = async () => {
-    // service firebase.storage {
-    //   match /b/{bucket}/o {
-    //     match /{allPaths=**} {
-    //       allow read;
-    //       allow write: if 
-    //       request.resource.size < 2 * 1024 * 1024 &&
-    //       request.resource.contentType.matches('image/.*')
-    //     }
-    //   }
-    // }
     setImageFileUploading(true);
     setImageFileUploadError(null);
     const storage = getStorage(app);
@@ -59,14 +47,11 @@ export default function DashProfile() {
     uploadTask.on(
       'state_changed',
       (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setImageFileUploadProgress(progress.toFixed(0));
       },
       (error) => {
-        setImageFileUploadError(
-          'Could not upload image (File must be less than 2MB)'
-        );
+        setImageFileUploadError('Could not upload image (File must be less than 2MB)');
         setImageFileUploadProgress(null);
         setImageFile(null);
         setImageFileUrl(null);
@@ -82,18 +67,16 @@ export default function DashProfile() {
     );
   };
 
-  // Function To Handle Form Input Change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  // Function to Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUpdateUserError(null);
     setUpdateUserSuccess(null);
     if (Object.keys(formData).length === 0) {
-      setUpdateUserError('No Changes made');
+      setUpdateUserError('No changes made');
       return;
     }
     if (imageFileUploading) {
@@ -123,7 +106,6 @@ export default function DashProfile() {
     }
   };
 
-  // Function To Handle Signout
   const handleSignout = async () => {
     try {
       const res = await fetch('/api/user/signout', {
@@ -141,93 +123,94 @@ export default function DashProfile() {
   };
 
   return (
-    <div className='max-w-lg mx-auto p-3 w-full mt-10'>
+    <div style={{ textAlign: 'center', margin:'3rem' }}>
       <div>
-          <h1 className="text-3xl text-sky-600 text-center font-serif uppercase"> - Profile details - </h1>
-          <hr className="my-4 border-gray-300 dark:border-gray-600" />
+        <h1> - PROFILE DETAILS - </h1>
+        <hr style={{maxWidth:'600px'}} />
       </div>
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+      <form onSubmit={handleSubmit}>
         <input
           type='file'
           accept='image/*'
           onChange={handleImageChange}
           ref={filePickerRef}
           hidden
+          style={{ width: '50px' }}
         />
-        <div
-          className='relative w-32 h-32 self-center cursor-pointer shadow-md overflow-hidden rounded-full'
-          onClick={() => filePickerRef.current.click()}
-        >
+        <div onClick={() => filePickerRef.current.click()} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           {imageFileUploadProgress && (
-            <CircularProgress
-              variant="determinate"
-              value={parseInt(imageFileUploadProgress)}
-              style={{ position: 'absolute', top: 0, left: 0 }}
+            <CircularProgressbar
+              value={imageFileUploadProgress || 0}
+              text={`${imageFileUploadProgress}%`}
+              strokeWidth={5}
+              styles={{
+                root: {
+                  width: '80px',
+                  height: '80px',
+                  margin: 'auto',
+                },
+                path: {
+                  stroke: `rgba(62, 152, 199, ${imageFileUploadProgress / 100})`,
+                },
+              }}
             />
           )}
           <img
             src={imageFileUrl || currentUser.profilePicture}
             alt='user'
-            className={`rounded-full w-full h-full object-cover border-8 border-[lightgray] ${
-              imageFileUploadProgress &&
-              imageFileUploadProgress < 100 &&
-              'opacity-60'
+            style={{ width: '150px' , borderRadius:'50px', margin:'1rem' }}
+            className={` ${
+              imageFileUploadProgress && imageFileUploadProgress < 100 && 'opacity-60'
             }`}
           />
         </div>
-        {imageFileUploadError && (
-          <Alert severity='error'>{imageFileUploadError}</Alert>
-        )}
-        <TextField
-          type='text'
-          id='username'
-          placeholder='username'
-          defaultValue={currentUser.username}
-          onChange={handleChange}
-        />
-        <TextField
-          type='email'
-          id='email'
-          placeholder='email'
-          defaultValue={currentUser.email}
-          onChange={handleChange}
-        />
-        <TextField
-          type='password'
-          id='password'
-          placeholder='password'
-          onChange={handleChange}
-        />
-        <Button
-          type='submit'
-          variant='contained'
-          disabled={loading || imageFileUploading}
-        >
-          {loading ? 'Loading...' : 'Update'}
-        </Button>
-        
+        {imageFileUploadError && <p style={{ color: 'red' }}>{imageFileUploadError}</p>}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <TextField
+            type='text'
+            id='username'
+            label='Username'
+            defaultValue={currentUser.username}
+            onChange={handleChange}
+            variant='outlined'
+            style={{ marginBottom: '10px', width:'400px'  }}
+          />
+          <TextField
+            type='email'
+            id='email'
+            label='Email'
+            defaultValue={currentUser.email}
+            onChange={handleChange}
+            variant='outlined'
+            style={{ marginBottom: '10px', width:'400px'  }}
+          />
+          <TextField
+            type='password'
+            id='password'
+            label='Password'
+            onChange={handleChange}
+            variant='outlined'
+            style={{ marginBottom: '10px', width:'400px'  }}
+          />
+          <Button
+            type='submit'
+            variant='contained'
+            color='primary'
+            disabled={loading || imageFileUploading}
+            style={{ marginTop: '10px', width:'400px'  }}
+          >
+            {loading ? 'Loading...' : 'Update'}
+          </Button>
+        </div>
       </form>
-      <div className='text-red-500 flex justify-center border-2 border-red-800 p-1 rounded mt-5'>
-        <span onClick={handleSignout} className='cursor-pointer'>
+      <div style={{ cursor: 'pointer', color: 'red', margin:'2rem' }}>
+        <span onClick={handleSignout} style={{ cursor: 'pointer', color: 'red', fontWeight:'600'}}>
           Sign Out
         </span>
       </div>
-      {updateUserSuccess && (
-        <Alert severity='success' className='mt-5'>
-          {updateUserSuccess}
-        </Alert>
-      )}
-      {updateUserError && (
-        <Alert severity='error' className='mt-5'>
-          {updateUserError}
-        </Alert>
-      )}
-      {error && (
-        <Alert severity='error' className='mt-5'>
-          {error}
-        </Alert>
-      )}
-      {/* Modal */}
+      {updateUserSuccess && <p style={{ color: 'green' }}>{updateUserSuccess}</p>}
+      {updateUserError && <p style={{ color: 'red' }}>{updateUserError}</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 }
