@@ -10,9 +10,17 @@ import { HiUser, HiLogout, HiOutlineUserGroup, HiChartBar, HiOutlineAcademicCap 
 
 const SidebarWrapper = styled('div')({
   width: '100%',
-  '@media (min-width: 768px)': {
-    width: '240px',
+  display: 'flex',
+  flexDirection: 'column',
+  '@media (max-width: 768px)': {
+    width: '230px',
   },
+});
+
+const ListItemWrapper = styled(ListItem)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
 });
 
 export default function DashSidebar() {
@@ -46,47 +54,57 @@ export default function DashSidebar() {
   };
 
   return (
-    <SidebarWrapper>
-      <ListItem button component={Link} to='/dashboard?tab=profile' selected={tab === 'profile'}>
-        <ListItemIcon sx={{ fontSize: 24 }}>
-          <HiUser />
-        </ListItemIcon>
-        <ListItemText primary={currentUser.isAdmin ? 'Admin' : 'User'}>Profile</ListItemText>
-      </ListItem>
+      <SidebarWrapper style={{flexDirection: 'row' , background:'#Cb136d', width:'100%'}}>
+        <ListItemWrapper style={{ color:'#fff'}}>
+          <ListItem button component={Link} to='/dashboard?tab=profile' selected={tab === 'profile'} >
+            <ListItemIcon sx={{ fontSize: 24 }}>
+              <HiUser style={{ color:'#fff'}} />
+            </ListItemIcon>
+            <ListItemText primary={currentUser.isAdmin ? 'ADMIN' : 'USER'} />
+          </ListItem>
+        </ListItemWrapper>
 
-      {currentUser && currentUser.isAdmin && (
-        <ListItem button component={Link} to='/dashboard?tab=dash' selected={tab === 'dash' || !tab}>
-          <ListItemIcon sx={{ fontSize: 24 }}>
-            <HiChartBar />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </ListItem>
-      )}
+        {currentUser && currentUser.isAdmin && (
+          <ListItemWrapper style={{marginLeft: '10rem',color:'#fff' }}>
+            <ListItem button component={Link} to='/dashboard?tab=dash' selected={tab === 'dash' || !tab}>
+              <ListItemIcon sx={{ fontSize: 24 }}>
+                <HiChartBar style={{ color:'#fff'}} />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+            </ListItem>
+          </ListItemWrapper>
+        )}
 
-      {currentUser.isAdmin && (
-        <ListItem button component={Link} to='/dashboard?tab=users' selected={tab === 'users'}>
-          <ListItemIcon sx={{ fontSize: 24 }}>
-            <HiOutlineUserGroup />
-          </ListItemIcon>
-          <ListItemText primary="Users" />
-        </ListItem>
-      )}
+        {currentUser.isAdmin && (
+          <ListItemWrapper style={{marginLeft: '10rem',color:'#fff' }}>
+            <ListItem button component={Link} to='/dashboard?tab=users' selected={tab === 'users'}>
+              <ListItemIcon sx={{ fontSize: 24 }}>
+                <HiOutlineUserGroup style={{ color:'#fff'}}/>
+              </ListItemIcon>
+              <ListItemText primary="Users" />
+            </ListItem>
+          </ListItemWrapper>
+        )}
 
-      {currentUser.isAdmin && (
-        <ListItem button component={Link} to='/dashboard?tab=courses' selected={tab === 'courses'}>
-          <ListItemIcon sx={{ fontSize: 24 }}>
-            <HiOutlineAcademicCap />
-          </ListItemIcon>
-          <ListItemText primary="Courses" />
-        </ListItem>
-      )}
+        {currentUser.isAdmin && (
+          <ListItemWrapper style={{marginLeft: '10rem',color:'#fff' }}>
+            <ListItem button component={Link} to='/dashboard?tab=courses' selected={tab === 'courses'}>
+              <ListItemIcon sx={{ fontSize: 24 }}>
+                <HiOutlineAcademicCap style={{ color:'#fff'}}/>
+              </ListItemIcon>
+              <ListItemText primary="Courses" />
+            </ListItem>
+          </ListItemWrapper>
+        )}
 
-      <ListItem button onClick={handleSignout}>
-        <ListItemIcon sx={{ fontSize: 24 }}>
-          <HiLogout />
-        </ListItemIcon>
-        <ListItemText primary="Sign Out" />
-      </ListItem>
-    </SidebarWrapper>
+        <ListItemWrapper style={{marginLeft: '10rem',color:'#fff' }}>
+          <ListItem button onClick={handleSignout}>
+            <ListItemIcon sx={{ fontSize: 24 }}>
+              <HiLogout style={{ color:'#fff'}}/>
+            </ListItemIcon>
+            <ListItemText primary="SignOut" />
+          </ListItem>
+        </ListItemWrapper>
+      </SidebarWrapper>
   );
 }

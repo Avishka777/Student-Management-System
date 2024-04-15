@@ -50,7 +50,7 @@ export default function Header() {
   };
 
   return (
-    <AppBar style={{ height: 65, position:"static", marginBottom:'30px'  }}>
+    <AppBar style={{ height: 65, position:"static"  }}>
       <Toolbar>
         
         {/* Logo and Title */}

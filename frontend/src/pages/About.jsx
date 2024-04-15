@@ -5,9 +5,9 @@ import obj from '../assets/objective.jpg';
 
 export default function About() {
   return (
-    <div>
+    <div style={{marginTop:'5rem', marginBottom:'5rem'}}>
       {/* Top Section */}
-      <Box sx={{ display: 'flex', flexDirection: 'column', marginTop: '10rem', marginBottom: '40px', paddingLeft: '10rem', paddingRight: '10rem', margin: 'auto' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', paddingLeft: '10rem', paddingRight: '10rem', margin: 'auto' }}>
       <Box sx={{ display: 'flex', flexDirection: 'row', margin: 'auto' }}>
           <img src={logo} alt="Stark Logo" style={{ height: '100px', width: '100px', borderRadius: '8px'}} />
           <Typography variant="h2" sx={{ color: '#2D3B48', textTransform: 'uppercase', margin: 'auto', fontFamily: 'serif' }}>The Future...</Typography>

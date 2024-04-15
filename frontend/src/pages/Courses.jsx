@@ -17,7 +17,7 @@ export default function Courses() {
   }, []);
 
   return (
-    <div>
+    <div style={{marginTop:'5rem', marginBottom:'5rem'}}>
       {/* Top Section */}
       <Box sx={{ display: 'flex', flexDirection: 'column', marginTop: '10rem', marginBottom: '40px', paddingLeft: '10rem', paddingRight: '10rem', margin: 'auto' }}>
         <Box sx={{ display: 'flex', flexDirection: 'row', margin: 'auto' }}>
