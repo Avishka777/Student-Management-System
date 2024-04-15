@@ -55,17 +55,17 @@ export default function Header() {
         
         {/* Logo and Title */}
         <RouterLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-          <img src={logo} alt="Stark Logo" style={{ height: 40, marginRight: 10}} />
-          <Typography variant="h6" sx={{ fontWeight: '600'}}>
+          <img src={logo} alt="PHOENIX LOGO" style={{ height: 40, marginRight: 10}} />
+          <Typography variant="h6" sx={{ fontWeight: '600', color: '#fff'}}>
             PHOENIX INSTITUTE
           </Typography>
         </RouterLink>
 
         {/* Navigation */}
-        <div style={{ marginLeft: '80px', color: '#fff'}}>
-          <RouterLink to='/' style={{ marginLeft: '20px' }}>Home</RouterLink>
-          <RouterLink to='/courses' style={{ marginLeft: '20px' }}>Courses</RouterLink>
-          <RouterLink to='/about' style={{ marginLeft: '20px' }}>About</RouterLink>
+        <div style={{ marginLeft: '80px', color: '#fff' }}>
+          <RouterLink to='/' style={{ marginLeft: '20px' , color: '#fff',textDecoration: 'none' }}>Home</RouterLink>
+          <RouterLink to='/courses' style={{ marginLeft: '20px' , color: '#fff',textDecoration: 'none' }}>Courses</RouterLink>
+          <RouterLink to='/about' style={{ marginLeft: '20px' , color: '#fff',textDecoration: 'none' }}>About</RouterLink>
         </div>
 
         {/* Search Form */}
@@ -82,8 +82,8 @@ export default function Header() {
         </form>
 
 
-        {/* Theme Toggle Button And User Profile Dropdown */}
-        <div style={{ marginLeft: '40px' }}>
+        {/* User Profile Dropdown */}
+        <div style={{ marginLeft: '60px' }}>
           {currentUser ? (
             <div>
               <IconButton onClick={(e) => setAnchorEl(e.currentTarget)}>
@@ -101,7 +101,7 @@ export default function Header() {
                   <Typography variant="body2">{currentUser.email}</Typography>
                 </MenuItem>
                 <MenuItem>
-                  <RouterLink to='/dashboard?tab=profile'>Dashboard</RouterLink>
+                  <RouterLink to='/dashboard?tab=profile' style={{ color: '#000',textDecoration: 'none' }}>Dashboard</RouterLink>
                 </MenuItem>
                 <MenuItem onClick={handleSignout}>Sign out</MenuItem>
               </Menu>

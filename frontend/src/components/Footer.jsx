@@ -12,33 +12,33 @@ export default function FooterCom() {
           
           {/* Logo And University Name */}
           <div style={{ marginLeft: '40px', display: 'flex', flexDirection: 'column' }}>
-            <img src={logo} alt="PHOENIX Logo" style={{ width: '140px' }} />
-            <span style={{ fontSize: '1.5rem', fontWeight: '600', color: '#ffffff' }}>PHOENIX INSTITUTE</span>
+            <img src={logo} alt="PHOENIX logo" style={{ width: '140px',marginLeft: '20px' }} />
+            <span style={{ fontSize: '1.5rem', fontWeight: '600'}}>PHOENIX INSTITUTE</span>
           </div>
 
           {/* Links Section */}
-          <div style={{ display: 'flex', gap: '40px', marginLeft: 'auto', marginTop:'30px' }}>
+          <div style={{ display: 'flex', gap: '60px', marginLeft: 'auto', marginTop:'30px' , color: '#ffffff' }}>
             <div>
-              <h4 style={{ color: '#ffffff' }}>Reference</h4>
+              <h4>REFERENCES</h4>
               <ul style={{ listStyleType: 'none', padding: 0 }}>
-                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Computing</a></li>
-                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Engineering</a></li>
-                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Business</a></li>
+                <li>Computing</li>
+                <li style={{ marginTop: '0.5rem'}}>Engineering</li>
+                <li style={{ marginTop: '0.5rem'}}>Business</li>
               </ul>
             </div>
             <div>
-              <h4 style={{ color: '#ffffff' }}>Services</h4>
+              <h4>SERVICES</h4>
               <ul style={{ listStyleType: 'none', padding: 0 }}>
-                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Help Desk</a></li>
-                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Student Service</a></li>
-                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Vehicle Service</a></li>
+                <li>Help Desk</li>
+                <li style={{ marginTop: '0.5rem'}}>Student Service</li>
+                <li style={{ marginTop: '0.5rem'}}>Vehicle Service</li>
               </ul>
             </div>
             <div>
-              <h4 style={{ color: '#ffffff' }}>Legal</h4>
+              <h4>LEGAL</h4>
               <ul style={{ listStyleType: 'none', padding: 0 }}>
-                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Privacy Policy</a></li>
-                <li><a href='#' style={{ color: '#ffffff', textDecoration: 'none' }}>Terms & Conditions</a></li>
+                <li>Privacy Policy</li>
+                <li style={{ marginTop: '0.5rem'}}>Terms & Conditions</li>
               </ul>
             </div>
           </div>
@@ -50,7 +50,7 @@ export default function FooterCom() {
         {/* Copyright and Icons */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginLeft: '40px', marginTop: '20px' }}>
           {/* Copyright */}
-          <p style={{ color: '#ffffff', margin: 0 }}>Copyright Avishka Rathnakumara. All Rights Reserved. &copy; {new Date().getFullYear()}</p>
+          <p style={{ color: '#ffffff', margin: 0 }}>Designed and Developed By Avishka Rathnakumara. All Rights Reserved. &copy; {new Date().getFullYear()}</p>
 
           {/* Social Icons */}
           <div>
