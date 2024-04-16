@@ -51,7 +51,7 @@ export default function SignUp() {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div style={{ minWidth: '50rem' }}>
           <div style={{ textAlign: 'center' }}>
-            <Typography variant="h4" color="primary">SIGN UP</Typography>
+            <h1>SIGN UP</h1>
             <hr style={{ margin: '1rem 0', border: 'none', borderBottom: '1px solid #ccc' }} />
           </div>
           <form style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }} onSubmit={handleSubmit}>
@@ -96,6 +96,15 @@ export default function SignUp() {
                 </>
               ) : ('SIGN UP')}
             </Button>
+            <Button
+              variant="contained"
+              type='submit'
+              disabled={loading}
+              href='\sign-in'
+              style={{backgroundColor:'#Cb136d', marginTop: '0.5rem'}}
+            >
+              Sign In
+          </Button>
           </form>
           {/* Display Error Message If Present */}
           {errorMessage && (
