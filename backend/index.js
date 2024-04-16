@@ -7,6 +7,20 @@ const courseRoutes = require('./routes/course.route.js');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
+
+// File Uploading Section
+const multer =require('multer');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+})
+const upload = multer({ storage });
+
+
 dotenv.config();
 mongoose
   .connect(process.env.MONGO)
@@ -19,14 +33,23 @@ mongoose
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
+
+
 app.listen(3000, () => {
   console.log('Server Running On PORT 3000!');
 });
 
+
+app.post('/api/upload', upload.single('file'), (req,res) =>{ 
+  res.json(req.file);
+})
+
+
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/course', courseRoutes);
-app.use(cors());
+
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
