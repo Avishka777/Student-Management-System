@@ -39,62 +39,62 @@ export default function CreateCourses() {
   };  
 
   return (
-    <div className='p-3 max-w-3xl mx-auto min-h-screen mt-10'>
-      <div>
-        <Typography variant="h4" align="center" color="primary"> - CREATE COURSE - </Typography>
-        <hr className="my-4 border-gray-300 dark:border-gray-600" />
+    <div style={{ marginBottom: '3rem', marginTop: '3rem',marginRight: 'auto', marginLeft: 'auto',width:'600px' }}>
+      <div style={{ marginBottom: '20px' ,textAlign: 'center'}}>
+        <h1 >- CREATE COURSE -</h1>
+        <hr style={{ marginTop: '10px', marginBottom: '20px' }} />
       </div>
-      <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-        <div className='mt-2'>
-          <label>Course Name</label>
-          <TextField
-            type='text'
-            placeholder='Course Name'
-            required
-            id='courseName'
-            className='flex-1 mt-2 w-full'
-            onChange={handleChange}
-          />
+      <form onSubmit={handleSubmit}>
+        <div style={{ marginBottom: '20px' }}>
+          <FormControl fullWidth>
+            <TextField
+              label="Course Name"
+              type='text'
+              required
+              id='courseName'
+              onChange={handleChange}
+            />
+          </FormControl>
         </div>
-        <div className='mt-2'>
-          <label>Course Code</label>
-          <TextField
-            type='text'
-            placeholder='Course Code'
-            required
-            id='courseCode'
-            className='flex-1 mt-2 w-full'
-            onChange={handleChange}
-          />
+        <div style={{ marginBottom: '20px' }}>
+          <FormControl fullWidth>
+            <TextField
+              label="Course Code"
+              type='text'
+              required
+              id='courseCode'
+              onChange={handleChange}
+            />
+          </FormControl>
         </div>
-        <div className='mt-2'>
-          <label>Course Description</label>
-          <TextField
-            type='text'
-            placeholder='Course Description'
-            required
-            id='courseDescription'
-            className='flex-1 mt-2 w-full'
-            onChange={handleChange}
-          />
+        <div style={{ marginBottom: '20px' }}>
+          <FormControl fullWidth>
+            <TextField
+              label="Course Description"
+              type='text'
+              required
+              id='courseDescription'
+              onChange={handleChange}
+            />
+          </FormControl>
         </div>
-        <div className='mt-2'>
-          <label>Course Price</label>
-          <TextField
-            type='text'
-            placeholder='Course Price'
-            required
-            id='coursePrice'
-            className='flex-1 mt-2 w-full'
-            onChange={handleChange}
-          />
+        <div style={{ marginBottom: '20px' }}>
+          <FormControl fullWidth>
+            <TextField
+              label="Course Price"
+              type='text'
+              required
+              id='coursePrice'
+              onChange={handleChange}
+            />
+          </FormControl>
         </div>
-        <div className='mt-2'>
-          <FormControl className='flex-1 mt-2 w-full'>
-            <label>Assigned Teacher</label>
+        <div style={{ marginBottom: '20px' }}>
+          <FormControl fullWidth>
+            <InputLabel id="enrolledFacultyLabel">Assigned Teacher</InputLabel>
             <Select
               labelId='enrolledFacultyLabel'
-              value={formData.enrolledTeacher}
+              value={formData.enrolledTeacher || ''}
               onChange={(e) =>
                 setFormData({ ...formData, enrolledTeacher: e.target.value })
               }
@@ -108,11 +108,11 @@ export default function CreateCourses() {
             </Select>
           </FormControl>
         </div>
-        <Button type='submit' variant='contained' color='primary' className='mt-2'>
+        <Button type='submit' variant='contained' color='primary' style={{width:'600px'}}>
           Create Course
         </Button>
         {publishError && (
-          <Alert className='mt-5' severity='error'>
+          <Alert severity='error' style={{ marginTop: '20px' }}>
             {publishError}
           </Alert>
         )}

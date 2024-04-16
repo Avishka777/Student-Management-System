@@ -69,62 +69,62 @@ export default function UpdateCourse() {
   };
 
   return (
-    <div className='p-3 max-w-3xl mx-auto min-h-screen mt-10'>
-      <div>
+    <div style={{ marginBottom: '3rem', marginTop: '3rem', marginRight: 'auto', marginLeft: 'auto', width: '600px' }}>
+      <div style={{ marginBottom: '20px', textAlign: 'center' }}>
         <Typography variant="h4" align="center" color="primary">- UPDATE COURSE -</Typography>
-        <hr className="my-4 border-gray-300 dark:border-gray-600" />
+        <hr style={{ marginTop: '10px', marginBottom: '20px' }} />
       </div>
-      <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-        <div className='mt-2'>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div>
           <label>Course Name</label>
           <TextField
             type='text'
             placeholder='Course Name'
             required
             id='courseName'
-            className='flex-1 mt-2 w-full'
             onChange={handleChange}
             value={formData.courseName || ''}
+            style={{ width: '100%' }}
           />
         </div>
-        <div className='mt-2'>
+        <div>
           <label>Course Code</label>
           <TextField
             type='text'
             placeholder='Course Code'
             required
             id='courseCode'
-            className='flex-1 mt-2 w-full'
             onChange={handleChange}
             value={formData.courseCode || ''}
+            style={{ width: '100%' }}
           />
         </div>
-        <div className='mt-2'>
+        <div>
           <label>Course Description</label>
           <TextField
             type='text'
             placeholder='Course Description'
             required
             id='courseDescription'
-            className='flex-1 mt-2 w-full'
             onChange={handleChange}
             value={formData.courseDescription || ''}
+            style={{ width: '100%' }}
           />
         </div>
-        <div className='mt-2'>
+        <div>
           <label>Course Price</label>
           <TextField
             type='text'
             placeholder='Course Price'
             required
             id='coursePrice'
-            className='flex-1 mt-2 w-full'
             onChange={handleChange}
             value={formData.coursePrice || ''}
+            style={{ width: '100%' }}
           />
         </div>
-        <div className='mt-2'>
-          <FormControl className='flex-1 mt-2 w-full'>
+        <div>
+          <FormControl style={{ width: '100%' }}>
             <label>Assigned Teacher</label>
             <Select
               labelId='enrolledTeacherLabel'
@@ -140,11 +140,11 @@ export default function UpdateCourse() {
             </Select>
           </FormControl>
         </div>
-        <Button type='submit' variant='contained' color='primary' className='mt-2'>
+        <Button type='submit' variant='contained' color='primary' style={{ width: '100%' }}>
           Update Course
         </Button>
         {publishError && (
-          <Alert className='mt-5' severity='error'>
+          <Alert severity='error' style={{ marginTop: '20px' }}>
             {publishError}
           </Alert>
         )}
