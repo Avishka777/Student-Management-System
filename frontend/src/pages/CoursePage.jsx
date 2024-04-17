@@ -2,6 +2,7 @@ import { CircularProgress, Typography, Box, Divider } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import CourseCard from '../components/CourseCard';
+import FileUploadCard from '../components/FileUploadCard';
 
 export default function CoursePage() {
   const { courseSlug } = useParams();
@@ -48,23 +49,59 @@ export default function CoursePage() {
 
   return (
     <main>
-      <Box maxWidth="1200px" mx="auto" minHeight="100vh" p={3} >
-        <Box display="flex" justifyContent="center" mt={10}>
-          <Typography variant="h3" align="center" color="primary"> COURSE DETAILS </Typography>
-        </Box>
-        <Divider my={4} />
-        <Typography variant="h6" align="center" color="secondary">{course && `${course.courseCode} | ${course.courseName}`}</Typography>
-        <Box display="flex" justifyContent="center" my={2}>
-          <Typography variant="body1">{course && new Date(course.createdAt).toLocaleDateString()}</Typography>
-          <Box mx={2} />
-          <Typography variant="body1">Course Price: {course && course.coursePrice}</Typography>
-        </Box>
-        <Box mx={2} my={4}>
-          <Typography variant="body1">Course Description:</Typography>
-          <Typography variant="body2" color="textSecondary">{course && course.courseDescription}</Typography>
-        </Box>
+      <Box maxWidth="1200px" mx="auto" minHeight="100vh" p={3} my={3} >
+  
         
-        <Divider my={4} />
+        <Typography variant="h4" align="center" color="#Cb136d">{course && `${course.courseCode} | ${course.courseName}`}</Typography>
+        <Divider mt={4} />
+       
+        <Box mx={2} my={4}>
+          <Typography variant="h4" color="primary">Week 1</Typography>
+          <Divider sx={{marginBottom:'1rem'}} />
+          <FileUploadCard  sx={{margin:'1rem'}} />
+        </Box>
+
+        <Box mx={2} my={4}>
+          <Typography variant="h4" color="primary">Week 2</Typography>
+          <Divider sx={{marginBottom:'1rem'}} />
+          <FileUploadCard  sx={{margin:'1rem'}} />
+        </Box>
+
+        <Box mx={2} my={4}>
+          <Typography variant="h4" color="primary">Week 3</Typography>
+          <Divider sx={{marginBottom:'1rem'}} />
+          <FileUploadCard  sx={{margin:'1rem'}} />
+        </Box>
+
+        <Box mx={2} my={4}>
+          <Typography variant="h4" color="primary">Week 4</Typography>
+          <Divider sx={{marginBottom:'1rem'}} />
+          <FileUploadCard  sx={{margin:'1rem'}} />
+        </Box>
+
+        <Box mx={2} my={4}>
+          <Typography variant="h4" color="primary">Week 5</Typography>
+          <Divider sx={{marginBottom:'1rem'}} />
+          <FileUploadCard  sx={{margin:'1rem'}} />
+        </Box>
+
+        <Box mx={2} my={4}>
+          <Typography variant="h4" color="primary">Week 6</Typography>
+          <Divider sx={{marginBottom:'1rem'}} />
+          <FileUploadCard  sx={{margin:'1rem'}} />
+        </Box>
+
+        <Box mx={2} my={4}>
+          <Typography variant="h4" color="primary">Week 7</Typography>
+          <Divider sx={{marginBottom:'1rem'}} />
+          <FileUploadCard  sx={{margin:'1rem'}} />
+        </Box>
+
+        <Box mx={2} my={4}>
+          <Typography variant="h4" color="primary">Week 8</Typography>
+          <Divider sx={{marginBottom:'1rem'}} />
+          <FileUploadCard  sx={{margin:'1rem'}} />
+        </Box>
        
       </Box>
     </main>

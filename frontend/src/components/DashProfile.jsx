@@ -6,7 +6,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { updateStart, updateSuccess, updateFailure, signoutSuccess } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, TextField, Typography,FormControl, InputLabel ,Select ,MenuItem} from '@mui/material';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
@@ -175,6 +175,26 @@ export default function DashProfile() {
             variant='outlined'
             style={{ marginBottom: '10px', width:'400px'  }}
           />
+          <div>
+          <FormControl style={{ marginBottom: '10px', width:'400px'  }}>
+            <InputLabel>Enrolled Course</InputLabel>
+            <Select
+              labelId='enrolledCoursesLabel'
+              value={formData.enrolledCourses || ''}
+              onChange={(e) => handleChange({ target: { id: 'enrolledCourses', value: e.target.value } })}
+            >
+              <MenuItem value=''>Select Course</MenuItem>
+              <MenuItem value='661b7612bce4e669425c35aa'>BSc (Hons) in Information Technology Specialising in Information Technology</MenuItem>
+              <MenuItem value='661b76c5bce4e669425c35b5'>BSc (Hons) in Computer Science</MenuItem>
+              <MenuItem value='661b771bbce4e669425c35c2'>BSc (Hons) in Information Technology Specialising in Computer Systems & Network Engineering</MenuItem>
+              <MenuItem value='661b7757bce4e669425c35cd'>BSc (Hons) in Information Technology Specialising in Software Engineering</MenuItem>
+              <MenuItem value='661b7790bce4e669425c35d8'>BSc (Hons) in Computer Systems Engineering</MenuItem>
+              <MenuItem value='661b77bdbce4e669425c35e3'>BSc (Hons) in Information Technology Specialising in Information Systems Engineering</MenuItem>
+              <MenuItem value='661b77e7bce4e669425c35ee'>BSc (Hons) in Information Technology Specialising in Cyber Security</MenuItem>
+              <MenuItem value='661b780cbce4e669425c35f9'>BSc (Hons) in Information Technology Specialising in Interactive Media</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
           <TextField
             type='email'
             id='email'
@@ -192,6 +212,7 @@ export default function DashProfile() {
             variant='outlined'
             style={{ marginBottom: '10px', width:'400px'  }}
           />
+          
           <Button
             type='submit'
             variant='contained'

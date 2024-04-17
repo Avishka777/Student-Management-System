@@ -3,8 +3,8 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 
 export default function CourseCard({ course }) {
-  const truncatedDescription = course.courseDescription.length > 200
-    ? course.courseDescription.slice(0, 500) + '...'
+  const truncatedDescription = course.courseDescription.length > 2000
+    ? course.courseDescription.slice(0, 2000) + '...'
     : course.courseDescription;
 
   return (
@@ -15,8 +15,13 @@ export default function CourseCard({ course }) {
           <Box >
             {/* Course Code and Name */}
             <div>
-              <Typography variant="subtitle1" fontWeight="bold" color="#Cb136d" fontSize={16}>
+              <Typography variant="subtitle1" fontWeight="bold" color="#2074d4" fontSize={16}>
                 {(course.courseCode)} | {(course.courseName)}
+              </Typography>
+            </div>
+            <div>
+              <Typography variant="subtitle1" fontWeight="bold" color="gray" fontSize={12}>
+                Course Price - {(course.coursePrice)}
               </Typography>
             </div>
             <hr style={{color:'#2074d4'}}/>
