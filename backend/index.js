@@ -6,20 +6,19 @@ const authRoutes = require('./routes/auth.route.js');
 const courseRoutes = require('./routes/course.route.js');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-
+const path = require('path');
 
 // File Uploading Section
-const multer =require('multer');
+const multer = require('multer');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './uploads')
+    cb(null, './uploads');
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
-  }
-})
+  },
+});
 const upload = multer({ storage });
-
 
 dotenv.config();
 mongoose
@@ -30,26 +29,29 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
-
 app.listen(3000, () => {
   console.log('Server Running On PORT 3000!');
 });
 
-
-app.post('/api/upload', upload.single('file'), (req,res) =>{ 
+app.post('/api/upload', upload.single('file'), (req, res) => {
   res.json(req.file);
-})
-
+});
 
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/course', courseRoutes);
 
+app.use(express.static(path.join(__dirname, '/frontend/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+});
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
