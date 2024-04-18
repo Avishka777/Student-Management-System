@@ -74,6 +74,7 @@ export default function DashUsers() {
                 <TableCell style={{fontWeight:'600'}}>DATE CREATED</TableCell>
                 <TableCell style={{fontWeight:'600'}}>IMAGE</TableCell>
                 <TableCell style={{fontWeight:'600'}}>NAME</TableCell>
+                <TableCell style={{fontWeight:'600'}}>Enrolled Course</TableCell>
                 <TableCell style={{fontWeight:'600'}}>EMAIL</TableCell>
                 <TableCell style={{fontWeight:'600'}}>ADMIN</TableCell>
                 <TableCell style={{fontWeight:'600'}}>TEACHER</TableCell>
@@ -94,6 +95,7 @@ export default function DashUsers() {
                   </TableCell>
                   <TableCell>{user.username}</TableCell>
                   <TableCell>{user.email}</TableCell>
+                  <TableCell>{user.enrolledCourses}</TableCell>
                   <TableCell>{user.role === 'Admin' ? <FaCheck style={{ color: 'green' }} /> : <FaTimes style={{ color: 'red' }} />}</TableCell>
                   <TableCell>{user.role === 'Teacher' ? <FaCheck style={{ color: 'green' }} /> : <FaTimes style={{ color: 'red' }} />}</TableCell>
                   <TableCell>{user.role === 'Student' ? <FaCheck style={{ color: 'green' }} /> : <FaTimes style={{ color: 'red' }} />}</TableCell>
