@@ -7,18 +7,7 @@ const courseRoutes = require('./routes/course.route.js');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
-
-// File Uploading Section
-const multer = require('multer');
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads');
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-const upload = multer({ storage });
+const upload = require('./fileUpload');
 
 dotenv.config();
 mongoose
