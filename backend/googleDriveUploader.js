@@ -27,10 +27,10 @@ const uploadFileToDrive = async (filePath, fileName) => {
         const response = await drive.files.create({
             requestBody: {
                 name: fileName,
-                mimeType: 'image/png' // Change mimeType if needed
+                mimeType: 'file/upload' // Change mimeType if needed
             },
             media: {
-                mimeType: 'image/png', // Change mimeType if needed
+                mimeType: 'file/upload', // Change mimeType if needed
                 body: fs.createReadStream(filePath)
             }
         });
