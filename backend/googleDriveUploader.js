@@ -1,13 +1,13 @@
-// googleDriveUploader.js
-
 const { google } = require('googleapis');
 const path = require('path');
 const fs = require('fs');
+require('dotenv').config();
 
-const CLIENT_ID = '905097017077-g84ji1m973hc0l0m95ddo8itgjfmb7se.apps.googleusercontent.com';
-const CLIENT_SECRET = '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';
-const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = '1//04Xu9bKdv3soQCgYIARAAGAQSNwF-L9IriewvbKg1tvDJ7wzUKykLLW0NZmgl87zOriTe2dP6xckHUG9RkSK6GVSvuoLjilC4XXg';
+
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 
 const oauth2Client = new google.auth.OAuth2(
     CLIENT_ID,
@@ -27,10 +27,10 @@ const uploadFileToDrive = async (filePath, fileName) => {
         const response = await drive.files.create({
             requestBody: {
                 name: fileName,
-                mimeType: 'file/upload' // Change mimeType if needed
+                mimeType: 'file/upload'
             },
             media: {
-                mimeType: 'file/upload', // Change mimeType if needed
+                mimeType: 'file/upload', 
                 body: fs.createReadStream(filePath)
             }
         });
