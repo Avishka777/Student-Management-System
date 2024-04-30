@@ -24,10 +24,21 @@ const drive = google.drive({
 
 const uploadFileToDrive = async (filePath, fileName) => {
     try {
+        const folderMetadata = {
+            'name': fileName, // Use the original file name as the folder name
+            'mimeType': 'application/vnd.google-apps.folder'
+        };
+        const folderResponse = await drive.files.create({
+            resource: folderMetadata,
+            fields: 'id'
+        });
+        const folderId = folderResponse.data.id;
+
+        // Upload file into the created folder
         const response = await drive.files.create({
             requestBody: {
                 name: fileName,
-                mimeType: 'file/upload'
+                parents: [folderId]
             },
             media: {
                 mimeType: 'file/upload', 
@@ -41,5 +52,7 @@ const uploadFileToDrive = async (filePath, fileName) => {
         throw error;
     }
 };
+
+
 
 module.exports = { uploadFileToDrive };
