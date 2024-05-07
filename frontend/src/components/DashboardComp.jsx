@@ -76,7 +76,7 @@ export default function DashboardComp() {
       <Box display="flex" justifyContent="center" mt={3}>
 
         {/* Total Users Component */}
-        <Box flex={1} p={2} bgcolor="#d417a1" borderRadius={4} boxShadow={4}>
+        <Box flex={1} p={2} bgcolor="#ff450d" borderRadius={4} boxShadow={4}>
           <Box display="flex" justifyContent="space-between">
             <HiOutlineUserGroup fontSize="30px" color="#ffffff"/>
             <Typography variant="h4">TOTAL USER COUNT</Typography>
@@ -108,7 +108,7 @@ export default function DashboardComp() {
       <Box display="flex" justifyContent="space-between" py={3}>
 
         {/* Recent Users Component */}
-        <TableContainer component={Box} flex={1} borderRadius={4} boxShadow={4} bgcolor="#d61149">
+        <TableContainer component={Box} flex={1} borderRadius={4} boxShadow={4} bgcolor="#0f6785">
           <Box p={2} display="flex" justifyContent="space-between" alignItems="center">
             <Typography variant="h6" color="white">RECENT USERS</Typography>
             <Button variant='outlined' component={Link} to='/dashboard?tab=users' sx={{ bgcolor: '#000000', color: '#fff' }}>See all</Button>

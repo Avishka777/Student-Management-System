@@ -53,7 +53,8 @@ export default function CoursePage() {
   
         
         <Typography variant="h4" align="center" color="#Cb136d">{course && `${course.courseCode} | ${course.courseName}`}</Typography>
-        <Divider mt={4} />
+        <Divider mt={4} mb={3}/>
+        <Typography variant="h6" align="center" color="gray">{course && `${course.courseDescription}`}</Typography>
        
         <Box mx={2} my={4}>
           <Typography variant="h4" color="primary">Week 1</Typography>
